@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: storage-service
+  mvc:
+    servlet:
+      path: /storage-service # // localhost:8080/storage-service/storage-service
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2MB
+      max-file-size: 5MB
+      max-request-size: 10MB
+#server:
+#  port: 8001
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+cloud:
+  aws:
+    credentials:
+      access-key: AKIA2QOFTWCO7ORLPBOD
+      secret-key: 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
+    region:
+      static: us-east-2
+    stack:
+      auto: false
+
+application:
+  bucket:
+    name: group-project-beaconfire
+
+#spring:
+#  servlet:
+#    multipart:
+#      enabled: true
+#      file-size-threshold: 2MB
+#      max-file-size: 5MB
+#      max-request-size: 10MB
+
+server:
+  port: 8011
