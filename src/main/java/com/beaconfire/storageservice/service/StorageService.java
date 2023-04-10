@@ -28,13 +28,14 @@ public class StorageService {
     }
 
 
-    public String uploadFile(MultipartFile file) {
+    public String uploadFile(String folder, MultipartFile file) {
         try {
             File fileObj = convertMultiPartFileToFile(file);
             String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-            s3Client.putObject(new PutObjectRequest(bucketName, fileName, fileObj));
+            String fullPathName = folder + "/" + fileName;
+            s3Client.putObject(new PutObjectRequest(bucketName, fullPathName, fileObj));
             fileObj.delete();
-            return "File uploaded : " + fileName;
+            return fullPathName;
         } catch (Exception e) {
             System.out.println("File Upload Failed due to the following: " + e);
         }
