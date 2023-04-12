@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/storage-service")
 public class StorageController {
@@ -24,15 +26,17 @@ public class StorageController {
 
     }
 
-    @GetMapping("/download/{fileName}")
-    public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable String fileName) {
-        byte[] data = service.downloadFile(fileName);
+    @GetMapping("/download")
+    public ResponseEntity<ByteArrayResource> downloadFile(
+            @RequestParam String filename
+    ) {
+        byte[] data = service.downloadFile(filename);
         ByteArrayResource resource = new ByteArrayResource(data);
         return ResponseEntity
                 .ok()
                 .contentLength(data.length)
                 .header("Content-type", "application/octet-stream")
-                .header("Content-disposition", "attachment; filename=\"" + fileName + "\"")
+                .header("Content-disposition", "attachment; filename=\"" + filename + "\"")
                 .body(resource);
     }
 
