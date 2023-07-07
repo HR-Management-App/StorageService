@@ -25,8 +25,8 @@ eureka:
 cloud:
   aws:
     credentials:
-      access-key: AKIA2QOFTWCO7ORLPBOD
-      secret-key: 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
+      access-key: 
+      secret-key: 
     region:
       static: us-east-2
     stack:
@@ -34,7 +34,7 @@ cloud:
 
 application:
   bucket:
-    name: group-project-beaconfire
+    name: project
 
 
 server:
